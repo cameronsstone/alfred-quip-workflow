@@ -3,11 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.orf.quip</string>
-	<key>category</key>
-	<string>Tools</string>
+	<string>com.cameronsstone.quip</string>
 	<key>connections</key>
 	<dict>
+		<key>2816AF24-7050-41B2-ACBC-627927CBDDF0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>77435B3B-36C0-46A2-8978-B4D80487A258</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2F993881-927A-4CB4-AF55-69AE1B906913</key>
 		<array>
 			<dict>
@@ -15,6 +26,39 @@
 				<string>AFF95B5D-E047-4736-A3F3-8ADBFD2AD3F4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2816AF24-7050-41B2-ACBC-627927CBDDF0</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5A6DC928-0369-4F08-A9F3-8BB5B936690A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AFF95B5D-E047-4736-A3F3-8ADBFD2AD3F4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2816AF24-7050-41B2-ACBC-627927CBDDF0</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -76,7 +120,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>python quip.py --setkey "{query}"</string>
+				<string>/usr/bin/python quip.py -d "${domain}" -k "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -117,14 +161,16 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>quip</string>
+				<string>qt</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -136,7 +182,102 @@
 				<key>runningsubtext</key>
 				<string>Searching Quip</string>
 				<key>script</key>
-				<string>python quip.py "{query}"</string>
+				<string>/usr/bin/python quip.py -t -d "${domain}" -a "${use_app}" "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>quip.py</string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search quip document titles</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>5A6DC928-0369-4F08-A9F3-8BB5B936690A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>if [[ "${use_app}" == 'true' ]]; then
+	echo -n "https://${domain:-quip.com}/$(echo {query} | cut -d '/' -f 3)"
+else
+	echo -n "quip://$(echo {query} | cut -d '/' -f 4)"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2816AF24-7050-41B2-ACBC-627927CBDDF0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>77435B3B-36C0-46A2-8978-B4D80487A258</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>q</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching Quip</string>
+				<key>script</key>
+				<string>/usr/bin/python quip.py -d "${domain}" -a "${use_app}" "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -155,40 +296,65 @@
 			<key>uid</key>
 			<string>2F993881-927A-4CB4-AF55-69AE1B906913</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Variables:
+* domain - set to your quip domain. Defaults to "quip.com"
+* use_app - set to "true" to open docs with the "quip://" protocol  by default</string>
 	<key>uidata</key>
 	<dict>
+		<key>2816AF24-7050-41B2-ACBC-627927CBDDF0</key>
+		<dict>
+			<key>note</key>
+			<string>Convert quip links to browser links and vice versa</string>
+			<key>xpos</key>
+			<integer>405</integer>
+			<key>ypos</key>
+			<integer>425</integer>
+		</dict>
 		<key>2F993881-927A-4CB4-AF55-69AE1B906913</key>
 		<dict>
 			<key>xpos</key>
-			<integer>120</integer>
+			<integer>130</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>430</integer>
+		</dict>
+		<key>5A6DC928-0369-4F08-A9F3-8BB5B936690A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>295</integer>
+		</dict>
+		<key>77435B3B-36C0-46A2-8978-B4D80487A258</key>
+		<dict>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>425</integer>
 		</dict>
 		<key>9D0A1AE7-4D68-413D-901E-F895667BC8FC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>290</integer>
+			<integer>415</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>160</integer>
 		</dict>
 		<key>AFF95B5D-E047-4736-A3F3-8ADBFD2AD3F4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>290</integer>
+			<integer>480</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>295</integer>
 		</dict>
 		<key>B85DBCB2-5674-4DD7-AB40-13F91201FC06</key>
 		<dict>
 			<key>xpos</key>
-			<integer>120</integer>
+			<integer>125</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>160</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
