@@ -201,7 +201,7 @@
 			<key>uid</key>
 			<string>5A6DC928-0369-4F08-A9F3-8BB5B936690A</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -296,7 +296,7 @@ fi</string>
 			<key>uid</key>
 			<string>2F993881-927A-4CB4-AF55-69AE1B906913</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
